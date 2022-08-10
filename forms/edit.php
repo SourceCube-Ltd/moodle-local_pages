@@ -175,10 +175,22 @@ class pages_edit_product_form extends moodleform {
         $mform->addElement('select', 'pagelayout', get_string('pagelayout_name', 'local_pages'), $layouts);
         $mform->getElement('pagelayout')->setSelected('standard');
 
-        $mform->addElement('select', 'pageparent', get_string('page_parent', 'local_pages'), $pages);
-
         $mform->addElement('text', 'pageorder', get_string('page_order', 'local_pages'));
         $mform->setType('pageorder', PARAM_INT);
+
+        $mform->addElement('select', 'pageparent', get_string('page_parent', 'local_pages'), $pages);
+
+        $mform->addElement('select', 'onmenu', get_string('page_onmenu', 'local_pages'),
+            array("1" => "Yes", "0" => "No"), 0);
+
+        $mform->addElement('advcheckbox', 'loginrequired', get_string('loginrequired', 'local_pages'));
+        $mform->addHelpButton('loginrequired', 'loginrequired', 'local_pages');
+        $mform->setType('loginrequired', PARAM_BOOL);
+        $mform->setDefault('loginrequired', false);
+
+        $mform->addElement('text', 'accesslevel', get_string('page_accesslevel', 'local_pages'));
+        $mform->addHelpButton('accesslevel', 'accesslevel_description', 'local_pages');
+        $mform->setType('accesslevel', PARAM_TEXT);
 
         $mform->addElement('select', 'pagetype', get_string('page_pagetype', 'local_pages'),
             array("page" => get_string("page", "local_pages"),
@@ -221,8 +233,7 @@ class pages_edit_product_form extends moodleform {
      * @return mixed
      */
     public function validation($data, $files) {
-        $errors = parent::validation($data, $files);
-        return $errors;
+        return parent::validation($data, $files);
     }
 
     /**
