@@ -1,4 +1,5 @@
 <?php
+
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -14,7 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-/**
+/*
  * Version file for component local_pages.
  *
  * @package         local_pages
@@ -23,10 +24,10 @@
  * @license         http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later.
  */
 
-defined('MOODLE_INTERNAL') || die;
+defined('MOODLE_INTERNAL') || exit;
 
-$plugin->requires   = 2020061500;                       // This plugin requires Moodle VER 3.9.
-$plugin->version    = 2021110400;                       // This plugins version number.
-$plugin->release    = 'v1.9';                           // This plugins release number.
-$plugin->maturity   = MATURITY_STABLE;
-$plugin->component  = 'local_pages';
+$plugin->requires = 2020061500;                       // This plugin requires Moodle VER 3.9.
+$plugin->version = 2022081000;                       // This plugins version number.
+$plugin->release = 'v1.10';                           // This plugins release number.
+$plugin->maturity = MATURITY_STABLE;
+$plugin->component = 'local_pages';

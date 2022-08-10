@@ -1,35 +1,60 @@
 # Changelog
 
-## V1.9 – 04/11/2021
-### Added
-•	Ability to add ogimage and HEAD content
+## V1.10 - 10/08/2022
 
-•	Clean params for pages
+### Merged
+
+* Merged master into MOODLE_STABLE_311 to introduce change from V1.8 where user login could be required without adding capabilities
+
+## V1.9 - 04/11/2021
+
+### Added
+
+* Ability to add ogimage and HEAD content
+
+* Clean params for pages
+
 ### Changed
-•	Bumped version number
 
-## V1.8 – 10/09/2020
+* Bumped version number
+
+## V1.8 - 10/09/2020
+
 ### Added
-•	Ability to require user login without adding capabilities
+
+* Ability to require user login without adding capabilities
+
 ### Fixed
-•	Function typo and add missing Moodle lang string 
+
+* Function typo and add missing Moodle lang string 
+
 ### Changed
-•	Bumped version number
 
-## V1.7 – 29/05/2019
+* Bumped version number
+
+## V1.7 - 29/05/2019
+
 ### Added
-•	Main boost navigation link with an icon for users that have page editing rights. 
 
-•	Menu items to the Boost Navigation.
+* Main boost navigation link with an icon for users that have page editing rights.
+* Menu items to the Boost Navigation.
+
 ### Fixed
-•	Warning message fixed in php7.2 for count() function
-### Changed
-•	Bumped version number
 
-## V1.6 – 26/04/2019
+* Warning message fixed in php7.2 for count() function
+
+### Changed
+
+* Bumped version number
+
+## V1.6 - 26/04/2019
+
 ### Added
-•	Extra styles to edit form to support BOOST theme.
 
-•	New styles and classes
+* Extra styles to edit form to support BOOST theme.
+
+* New styles and classes
+
 ### Changed
-•	Bumped version number
+
+* Bumped version number
