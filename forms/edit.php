@@ -140,8 +140,9 @@ class pages_edit_product_form extends moodleform
 
         // NAVIGATION CONTROLS.
         $mform->addElement('header', 'menuitems', 'Navigation');
-        $mform->addElement('select', 'onmenu', get_string('page_onmenu', 'local_pages'),
-            ['1' => get_string('yes', 'local_pages'), '0' => get_string('no', 'local_pages')], 0);
+        $mform->setExpanded('menuitems');
+        $mform->addElement('selectyesno', 'onmenu', get_string('page_onmenu', 'local_pages'));
+        $mform->setDefault('onmenu', 0);
 
         $icons = ['' => ''];
         foreach (local_pages_get_fontawesome_icon_map() as $pix => $fa) {
@@ -171,6 +172,7 @@ class pages_edit_product_form extends moodleform
         $options['maxfiles'] = 1;
         $options['accepted_types'] = ['jpg', 'jpeg', 'png', 'svg', 'webp'];
         $mform->addElement('filemanager', 'ogimage_filemanager', get_string('edit_ogimage', 'local_pages'), null, $options);
+
         // PAGE DISPLAY.
         $mform->addElement('header', 'htmlbody', 'Page Display');
 
@@ -181,9 +183,6 @@ class pages_edit_product_form extends moodleform
         $mform->setType('pageorder', PARAM_INT);
 
         $mform->addElement('select', 'pageparent', get_string('page_parent', 'local_pages'), $pages);
-
-        $mform->addElement('select', 'onmenu', get_string('page_onmenu', 'local_pages'),
-            ['1' => 'Yes', '0' => 'No'], 0);
 
         $mform->addElement('advcheckbox', 'loginrequired', get_string('loginrequired', 'local_pages'));
         $mform->addHelpButton('loginrequired', 'loginrequired', 'local_pages');
