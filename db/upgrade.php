@@ -1,4 +1,5 @@
 <?php
+
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -14,7 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-/**
+/*
  * Local Pages Upgrade
  *
  * @package     local_pages
@@ -23,19 +24,20 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
-defined('MOODLE_INTERNAL') || die;
+defined('MOODLE_INTERNAL') || exit;
 
 /**
- *
  * This is to upgrade the older versions of the plugin.
  *
- * @param integer $oldversion
+ * @param int $oldversion
+ *
  * @return bool
+ *
  * @copyright   2017 LearningWorks Ltd
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-function xmldb_local_pages_upgrade($oldversion) {
+function xmldb_local_pages_upgrade($oldversion)
+{
     global $DB;
     $dbman = $DB->get_manager();
 
@@ -109,7 +111,7 @@ function xmldb_local_pages_upgrade($oldversion) {
         $table->add_field('formcontent', XMLDB_TYPE_TEXT, null, null, null, null);
         $table->add_field('formdate', XMLDB_TYPE_INTEGER, '10', null, null, null, '0');
         $table->add_field('formname', XMLDB_TYPE_TEXT, '10', null, null, null);
-        $table->add_key('primary', XMLDB_KEY_PRIMARY, array('id'));
+        $table->add_key('primary', XMLDB_KEY_PRIMARY, ['id']);
 
         if (!$dbman->table_exists($table)) {
             $dbman->create_table($table);
@@ -120,7 +122,6 @@ function xmldb_local_pages_upgrade($oldversion) {
     }
 
     if ($oldversion < 2019102402) {
-
         // Define field menuicon to be added to local_pages.
         $table = new xmldb_table('local_pages');
         $field = new xmldb_field('menuicon', XMLDB_TYPE_CHAR, '64', null, null, null, null, 'menuname');
@@ -146,8 +147,7 @@ function xmldb_local_pages_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2021021200, 'local', 'pages');
     }
 
-    if ($oldversion < 2018032005) {
-
+    if ($oldversion < 2022081100) {
         // Define field loginrequired to be added to local_pages.
         $table = new xmldb_table('local_pages');
         $field = new xmldb_field('loginrequired', XMLDB_TYPE_INTEGER, '1', null, null, null, null, 'onmenu');
@@ -158,7 +158,7 @@ function xmldb_local_pages_upgrade($oldversion) {
         }
 
         // Pages savepoint reached.
-        upgrade_plugin_savepoint(true, 2018032005, 'local', 'pages');
+        upgrade_plugin_savepoint(true, 2022081100, 'local', 'pages');
     }
 
     return true;

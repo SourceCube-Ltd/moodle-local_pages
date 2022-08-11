@@ -27,7 +27,7 @@
 defined('MOODLE_INTERNAL') || exit;
 
 $plugin->requires = 2020061500;                       // This plugin requires Moodle VER 3.9.
-$plugin->version = 2022081000;                       // This plugins version number.
+$plugin->version = 2022081100;                       // This plugins version number.
 $plugin->release = 'v1.10';                           // This plugins release number.
 $plugin->maturity = MATURITY_STABLE;
 $plugin->component = 'local_pages';
