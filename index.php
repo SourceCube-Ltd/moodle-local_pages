@@ -1,4 +1,5 @@
 <?php
+
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -17,32 +18,34 @@
 /**
  * Pages main view page.
  *
- * @package         local_pages
  * @author          Kevin Dibble <kevin.dibble@learningworks.co.nz>.
  * @copyright       2017 LearningWorks Ltd.
  * @license         http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later.
  */
-
-require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
+require_once dirname(dirname(dirname(__FILE__))).'/config.php';
 
 // Get the id of the page to be displayed.
 $pageid = optional_param('id', 0, PARAM_INT);
 
 // Setup the page.
 $PAGE->set_context(\context_system::instance());
-$PAGE->set_url("{$CFG->wwwroot}/local/pages/index.php", ['id' => $pageid]);
 
-require_once("{$CFG->dirroot}/local/pages/lib.php");
+// Check if we have are using cleanurl's - don't set url if we are
+if (!get_config('local_pages', 'cleanurl_enabled')) {
+    $PAGE->set_url("{$CFG->wwwroot}/local/pages/index.php", ['id' => $pageid]);
+}
+
+require_once "{$CFG->dirroot}/local/pages/lib.php";
 
 // Set the page layout.
-$custompage     = \local_pages\custompage::load($pageid);
+$custompage = \local_pages\custompage::load($pageid);
 
 // Check if the page has a login or access level requirement.
 if ($custompage->loginrequired || $custompage->accesslevel != '') {
     require_login();
 }
 
-$templatename   = trim($custompage->pagelayout) != '' ? $custompage->pagelayout : 'standard';
+$templatename = trim($custompage->pagelayout) != '' ? $custompage->pagelayout : 'standard';
 $PAGE->set_pagelayout($templatename);
 
 // Now, get the page renderer.
