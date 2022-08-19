@@ -24,6 +24,8 @@
  */
 require_once dirname(dirname(dirname(__FILE__))).'/config.php';
 
+global $FULLME;
+
 // Get the id of the page to be displayed.
 $pageid = optional_param('id', 0, PARAM_INT);
 
@@ -33,6 +35,8 @@ $PAGE->set_context(\context_system::instance());
 // Check if we have are using cleanurl's - don't set url if we are
 if (!get_config('local_pages', 'cleanurl_enabled')) {
     $PAGE->set_url("{$CFG->wwwroot}/local/pages/index.php", ['id' => $pageid]);
+} else {
+    $PAGE->set_url($FULLME);
 }
 
 require_once "{$CFG->dirroot}/local/pages/lib.php";
