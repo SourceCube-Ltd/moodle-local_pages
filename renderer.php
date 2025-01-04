@@ -40,7 +40,7 @@ class local_pages_renderer extends plugin_renderer_base
     /**
      * @var array
      */
-    public $errorfields = array();
+    public $error_fields = array();
 
     /**
      *
@@ -167,7 +167,7 @@ class local_pages_renderer extends plugin_renderer_base
             $usr = $DB->get_record_sql('SELECT * FROM {user} WHERE id=1');
         }
         foreach ((array)$usr as $key => $details) {
-            if (!is_array($details) && !is_object($details)) {
+            if (!is_array($details) && !is_object($details) && $details != null) {
                 $data = str_ireplace('{' . $key . '}', $details, $data);
             }
         }
@@ -426,7 +426,7 @@ class local_pages_renderer extends plugin_renderer_base
      *
      * Save the page to the database and redirect the user
      *
-     * @param bool $page
+     * @param mixed $page
      */
     public function save_page($page = false) {
         global $CFG;

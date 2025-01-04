@@ -84,7 +84,7 @@ function local_pages_build_menu(navigation_node $nav, $parent, global_navigation
     $records = $DB->get_records_sql("SELECT * FROM {local_pages} WHERE deleted=0 AND onmenu=1 " .
         "AND pagetype='page' AND pageparent=? AND pagedate <=? " .
         "ORDER BY pageorder", array($parent, $today));
-    local_pages_process_records($records, $nav, false, $gnav);
+    local_pages_process_records($records, $nav, $gnav, false);
 }
 
 /**
@@ -93,13 +93,13 @@ function local_pages_build_menu(navigation_node $nav, $parent, global_navigation
  *
  * @param mixed $records
  * @param mixed $nav
- * @param bool $parent
+ * @param mixed $parent
  * @param global_navigation $gnav
  * @throws coding_exception
  * @throws dml_exception
  * @throws moodle_exception
  */
-function local_pages_process_records($records, $nav, $parent = false, global_navigation $gnav) {
+function local_pages_process_records($records, $nav, global_navigation $gnav, $parent = false) {
     global $CFG;
     if ($records) {
         foreach ($records as $page) {
@@ -175,7 +175,7 @@ function local_pages_extend_navigation(global_navigation $nav) {
     $records = $DB->get_records_sql("SELECT * FROM {local_pages} WHERE deleted=0 AND onmenu=1 " .
         "AND pagetype='page' AND pageparent=0 AND pagedate <= ? ORDER BY pageorder", array($today));
 
-    local_pages_process_records($records, $nav, false, $nav);
+    local_pages_process_records($records, $nav, $nav, false);
 }
 
 /**
@@ -457,7 +457,7 @@ function local_pages_get_fontawesome_icon_map() {
         'local_pages:t/block' => 'fa-ban',
         'local_pages:t/block_to_dock_rtl' => 'fa-chevron-right',
         'local_pages:t/block_to_dock' => 'fa-chevron-left',
-        'local_pages:t/calc_off' => 'fa-calculator', // TODO: Change to better icon once we have stacked icon support or more icons.
+        'local_pages:t/calc_off' => 'fa-calculator',
         'local_pages:t/calc' => 'fa-calculator',
         'local_pages:t/check' => 'fa-check',
         'local_pages:t/cohort' => 'fa-users',

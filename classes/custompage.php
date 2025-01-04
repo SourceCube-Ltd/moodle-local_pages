@@ -36,7 +36,7 @@ defined('MOODLE_INTERNAL') || die;
 class custompage {
 
     /**
-     * @var $_data
+     * @var mixed $_data
      */
     private $_data;
 
